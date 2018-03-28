@@ -1,5 +1,5 @@
 from django.db import models
-from Student.models import *
+from Student.models import Students
 # Create your models here.
 
 class Questions(models.Model):
@@ -21,6 +21,7 @@ class Questions(models.Model):
 class Question_Papers(models.Model):
     qpID = models.CharField(primary_key=True, max_length=20)
     qpName = models.CharField(max_length=30)
+    toughnessLevel = models.IntegerField(max_length=2, default=2)               # 1 to 5
     timeDuration = models.DecimalField(max_digits=8, decimal_places=3)
     createdOn = models.DateField(auto_now=True)
     activeFlag = models.BooleanField(default=False)
@@ -33,3 +34,15 @@ class Records(models.Model):
     questionID = models.ForeignKey(Questions)
     response = models.CharField(max_length=2)
 
+class Question_Paper_Analytics(models.Model):
+    qpID = models.ForeignKey(Question_Papers)
+    avgScore = models.DecimalField(max_digits=8, decimal_places=3)
+    topScore = models.DecimalField(max_digits=8, decimal_places=3)
+    attemptCount = models.IntegerField(max_length=5, default=0)
+
+class Question_Analytics(models.Model):
+    questionID = models.ForeignKey(Questions)
+    attemptedCount = models.IntegerField(max_length=5, default=0)
+    correctAttempts = models.IntegerField(max_length=5, default=0)
+    wrongAttempts = models.IntegerField(max_length=5, default=0)
+    avgTimeTaken = models.DecimalField(max_digits=8, decimal_places=3)          # minutes
