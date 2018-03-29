@@ -3,20 +3,18 @@ from Student.models import *
 # Create your models here.
 
 class Questions(models.Model):
-    questionID = models.CharField(primary_key=True, max_length=10)
     statement = models.TextField(max_length=200)
-    optionA = models.CharField(max_length=50)
-    optionB = models.CharField(max_length=50)
-    optionC = models.CharField(max_length=50)
-    optionD = models.CharField(max_length=50)
-    correctOption = models.CharField(max_length=1)
+    correctOption = models.CharField(max_length=50)
+    incorrectOption1 = models.CharField(max_length=50)
+    incorrectOption2 = models.CharField(max_length=50)
+    incorrectOption3 = models.CharField(max_length=50)
     image1 = models.ImageField(upload_to = 'pic_folder/', default = None)
     image2 = models.ImageField(upload_to = 'pic_folder/', default = None)
-    maxMarks = models.DecimalField(max_digits=6, decimal_places=3)
+    maxMarks = models.IntegerField()
     subject = models.CharField(max_length=20, default='NA')
     subCategory = models.CharField(max_length=20, )
     difficultyLevel = models.IntegerField(default=2)        # 1 to 5 for increasing toughness
-    timeLimit = models.DecimalField(max_digits=8, decimal_places=3)
+    timeLimit = models.IntegerField()
 
 class Question_Papers(models.Model):
     qpID = models.CharField(primary_key=True, max_length=20)
@@ -32,4 +30,10 @@ class Records(models.Model):
     studentID = models.ForeignKey(Students)
     questionID = models.ForeignKey(Questions)
     response = models.CharField(max_length=2)
+
+
+# class UploadLog(models.Model):
+#     # time = models.DateField(auto=now)
+#     file = models.FileField(upload_to='fileLog/')
+
 

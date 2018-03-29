@@ -14,9 +14,19 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from Question_Bank.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index),
+    url(r'^createtest/$', createtest),
+    url(r'^createtest/uploadquestions/$', uploadquestions),
+    url(r'^createtest/uploadquestions/submit/$', submitquestions),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
