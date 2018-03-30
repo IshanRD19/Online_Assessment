@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf236311-3828-46b9-b897-ae06e5c0446b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Student/templates/createquestionpaper.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Question_Bank/admin.py" afterPath="$PROJECT_DIR$/Question_Bank/admin.py" />
-      <change beforePath="$PROJECT_DIR$/Question_Bank/models.py" afterPath="$PROJECT_DIR$/Question_Bank/models.py" />
-      <change beforePath="$PROJECT_DIR$/Question_Bank/views.py" afterPath="$PROJECT_DIR$/Question_Bank/views.py" />
-      <change beforePath="$PROJECT_DIR$/Student/templates/createtest.html" afterPath="$PROJECT_DIR$/Student/templates/createtest.html" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/evaluation/urls.py" afterPath="$PROJECT_DIR$/evaluation/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -246,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1522341864841</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="User Can create question papers">
+      <created>1522428965060</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1522428965060</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -304,7 +304,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user can upload question in csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="user can upload question in csv" />
+    <MESSAGE value="User Can create question papers" />
+    <option name="LAST_COMMIT_MESSAGE" value="User Can create question papers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
