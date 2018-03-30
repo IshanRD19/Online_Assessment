@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^createtest/$', createtest),
     url(r'^createtest/uploadquestions/$', uploadquestions),
     url(r'^createtest/createquestionpaper/$', createquestionpaper),
+    url(r'^createtest/editquestions/$', editquestions),
+    url(r'^createtest/editquestions/(?P<question_id>[0-9]+)/$', editquestionid),
+    url(r'^createtest/editquestions/(?P<question_id>[0-9]+)/edit/$', questionedit),
     url(r'^createtest/createquestionpaper/create/$', submitquestionpaper),
     url(r'^createtest/uploadquestions/submit/$', submitquestions),
 ]

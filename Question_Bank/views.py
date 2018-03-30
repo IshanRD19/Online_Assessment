@@ -59,3 +59,31 @@ def submitquestionpaper(request):
         return HttpResponse('<h1>Created Successfully</h1><br><a href="/">GO BACK</a>')
     return redirect('/')
 
+
+def editquestions(request):
+    all_questions = Questions.objects.all()
+    return render(request, 'allquestionsforedit.html', {'context': all_questions})
+
+
+def editquestionid(request, question_id):
+    question = Questions.objects.get(id=question_id)
+    return render(request, 'editquestion.html', {'context': question})
+
+
+def questionedit(request, question_id):
+    if request.method == 'POST':
+        question = Questions.objects.get(id=question_id)
+        question.statement = str(request.POST['statement'])
+        question.correctOption = str(request.POST['correct'])
+        question.incorrectOption1 = str(request.POST['incorrect1'])
+        question.incorrectOption2 = str(request.POST['incorrect2'])
+        question.incorrectOption3 = str(request.POST['incorrect3'])
+        question.maxMarks = str(request.POST['marks'])
+        question.subject = str(request.POST['subject'])
+        question.subCategory = str(request.POST['subcategory'])
+        question.difficultyLevel = str(request.POST['difficulty'])
+        question.timeLimit = str(request.POST['time'])
+        question.save()
+        return HttpResponse('<h1>Altered Successfully</h1><br><a href="/">GO BACK</a>')
+
+    return redirect('/')
