@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^$', index),
     url(r'^createtest/$', createtest),
     url(r'^createtest/uploadquestions/$', uploadquestions),
+    url(r'^createtest/createquestionpaper/$', createquestionpaper),
+    url(r'^createtest/createquestionpaper/create/$', submitquestionpaper),
     url(r'^createtest/uploadquestions/submit/$', submitquestions),
 ]
 

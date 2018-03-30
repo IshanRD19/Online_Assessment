@@ -2,6 +2,7 @@ from django.db import models
 from Student.models import *
 # Create your models here.
 
+
 class Questions(models.Model):
     statement = models.TextField(max_length=200)
     correctOption = models.CharField(max_length=50)
@@ -16,12 +17,19 @@ class Questions(models.Model):
     difficultyLevel = models.IntegerField(default=2)        # 1 to 5 for increasing toughness
     timeLimit = models.IntegerField()
 
+    def __str__(self):
+        return self.statement
+
+
 class Question_Papers(models.Model):
-    qpID = models.CharField(primary_key=True, max_length=20)
     qpName = models.CharField(max_length=30)
-    timeDuration = models.DecimalField(max_digits=8, decimal_places=3)
+    # timeDuration = models.DecimalField(max_digits=8, decimal_places=3)
     createdOn = models.DateField(auto_now=True)
     activeFlag = models.BooleanField(default=False)
+    questions = models.ManyToManyField(Questions, related_name="question")
+
+    def __str__(self):
+        return self.qpName
 
 class Records(models.Model):
     recordID = models.CharField(primary_key=True, max_length=10)

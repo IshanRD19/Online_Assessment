@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from Question_Bank.models import *
 import pandas as pd
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -33,3 +34,28 @@ def submitquestions(request):
             question.incorrectOption3 = dataFrame[dataFrame.columns[8]][i]
             question.save()
         return redirect('/')
+
+
+def createquestionpaper(request):
+    questions = Questions.objects.all()
+    return render(request, 'createquestionpaper.html', {'context': questions})
+
+
+def submitquestionpaper(request):
+    if request.method == 'POST':
+        question_paper = Question_Papers()
+        question_paper.qpName = request.POST['qname']
+        all_questions = Questions.objects.all()
+        # s = []
+        question_paper.save()
+        for i in all_questions:
+            try:
+                if request.POST[str(i.id)]:
+                # s.append(i.statement)
+                    question_paper.questions.add(i)
+            except:
+                pass
+        question_paper.save()
+        return HttpResponse('<h1>Created Successfully</h1><br><a href="/">GO BACK</a>')
+    return redirect('/')
+
