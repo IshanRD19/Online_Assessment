@@ -87,3 +87,40 @@ def questionedit(request, question_id):
         return HttpResponse('<h1>Altered Successfully</h1><br><a href="/">GO BACK</a>')
 
     return redirect('/')
+
+
+def editquestionpaper(request):
+    all_question_papers = Question_Papers.objects.all()
+    return render(request, 'questionpapersforedit.html', {'context': all_question_papers})
+
+
+def questionpaperid(request, questionpaper_id):
+    question_paper = Question_Papers.objects.get(id=questionpaper_id)
+    all_questions = Questions.objects.all()
+    return render(request, 'editquestionpaper.html', {'question_paper': question_paper, 'questions': all_questions})
+
+
+def questionpaperedit(request, questionpaper_id):
+    if request.method == 'POST':
+        question_paper = Question_Papers.objects.get(id=questionpaper_id)
+        question_paper.qpName = request.POST['qpname']
+        all_questions = Questions.objects.all()
+        if request.POST['active']:
+            question_paper.activeFlag = True
+        else:
+            question_paper.activeFlag = False
+        # s = []
+        question_paper.save()
+        for i in all_questions:
+            try:
+                if request.POST[str(i.id)]:
+                # s.append(i.statement)
+                    question_paper.questions.add(i)
+                else:
+                    question_paper.question.exclude(i)
+            except:
+                pass
+        question_paper.save()
+        return HttpResponse('<h1>Created Successfully</h1><br><a href="/">GO BACK</a>')
+    return redirect('/')
+
