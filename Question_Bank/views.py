@@ -105,21 +105,20 @@ def questionpaperedit(request, questionpaper_id):
         question_paper = Question_Papers.objects.get(id=questionpaper_id)
         question_paper.qpName = request.POST['qpname']
         all_questions = Questions.objects.all()
-        if request.POST['active']:
-            question_paper.activeFlag = True
-        else:
+        try:
+            if request.POST['active']:
+                question_paper.activeFlag = True
+        except:
             question_paper.activeFlag = False
-        # s = []
+            # s = []
         question_paper.save()
         for i in all_questions:
             try:
                 if request.POST[str(i.id)]:
                 # s.append(i.statement)
                     question_paper.questions.add(i)
-                else:
-                    question_paper.question.exclude(i)
             except:
-                pass
+                question_paper.questions.remove(i)
         question_paper.save()
         return HttpResponse('<h1>Created Successfully</h1><br><a href="/">GO BACK</a>')
     return redirect('/')
