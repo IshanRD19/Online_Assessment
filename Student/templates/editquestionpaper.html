@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Edit Question Paper</h1><hr>
-<form method="post" action="/createtest/editquestionpaper/6/edit/">
+<form method="post" action="/createtest/editquestionpaper/{{ question_paper.id }}/edit/">
     {% csrf_token %}
 <table cellpadding="10">
     <tr>

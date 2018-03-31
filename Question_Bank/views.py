@@ -123,3 +123,8 @@ def questionpaperedit(request, questionpaper_id):
         return HttpResponse('<h1>Created Successfully</h1><br><a href="/">GO BACK</a>')
     return redirect('/')
 
+
+def taketest(request):
+    all_question_papers = Question_Papers.objects.filter(activeFlag=True)
+    return render(request, 'taketesthome.html', {'context': all_question_papers})
+
