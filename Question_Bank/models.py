@@ -5,10 +5,11 @@ from Student.models import *
 
 class Questions(models.Model):
     statement = models.TextField(max_length=200)
-    correctOption = models.CharField(max_length=50)
-    incorrectOption1 = models.CharField(max_length=50)
-    incorrectOption2 = models.CharField(max_length=50)
-    incorrectOption3 = models.CharField(max_length=50)
+    correctOption = models.CharField(max_length=2)
+    option1 = models.CharField(max_length=50)
+    option2 = models.CharField(max_length=50)
+    option3 = models.CharField(max_length=50)
+    option4 = models.CharField(max_length=50)
     image1 = models.ImageField(upload_to = 'pic_folder/', default = None)
     image2 = models.ImageField(upload_to = 'pic_folder/', default = None)
     maxMarks = models.IntegerField()

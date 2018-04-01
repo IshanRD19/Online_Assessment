@@ -29,9 +29,10 @@ def submitquestions(request):
             question.maxMarks = dataFrame[dataFrame.columns[3]][i]
             question.statement = dataFrame[dataFrame.columns[4]][i]
             question.correctOption = dataFrame[dataFrame.columns[5]][i]
-            question.incorrectOption1 = dataFrame[dataFrame.columns[6]][i]
-            question.incorrectOption2 = dataFrame[dataFrame.columns[7]][i]
-            question.incorrectOption3 = dataFrame[dataFrame.columns[8]][i]
+            question.option1 = dataFrame[dataFrame.columns[6]][i]
+            question.option2 = dataFrame[dataFrame.columns[7]][i]
+            question.option3 = dataFrame[dataFrame.columns[8]][i]
+            question.option4 = dataFrame[dataFrame.columns[9]][i]
             question.save()
         return redirect('/')
 
@@ -75,9 +76,10 @@ def questionedit(request, question_id):
         question = Questions.objects.get(id=question_id)
         question.statement = str(request.POST['statement'])
         question.correctOption = str(request.POST['correct'])
-        question.incorrectOption1 = str(request.POST['incorrect1'])
-        question.incorrectOption2 = str(request.POST['incorrect2'])
-        question.incorrectOption3 = str(request.POST['incorrect3'])
+        question.Option1 = str(request.POST['option1'])
+        question.Option2 = str(request.POST['option2'])
+        question.Option3 = str(request.POST['option3'])
+        question.Option4 = str(request.POST['option4'])
         question.maxMarks = str(request.POST['marks'])
         question.subject = str(request.POST['subject'])
         question.subCategory = str(request.POST['subcategory'])
@@ -128,3 +130,8 @@ def taketest(request):
     all_question_papers = Question_Papers.objects.filter(activeFlag=True)
     return render(request, 'taketesthome.html', {'context': all_question_papers})
 
+
+def attempttest(request, questionpaper_id):
+    question_paper = Question_Papers.objects.get(id=questionpaper_id)
+    all_test_questions = question_paper.questions.all()
+    return render(request, 'attempttest.html', {'context': all_test_questions})
