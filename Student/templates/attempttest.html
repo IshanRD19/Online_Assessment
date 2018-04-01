@@ -5,19 +5,18 @@
     <title>Attempt the Test</title>
 </head>
 <body>
-<h1>Ready. Set. Go!</h1>
-<form>
-    {% for i in context %}
-        <tr>
-            <h3>{{ i.statement }}</h3>
-        </tr>
-    <input type="radio" checked> {{ i.option1 }}<br><br>
-    <input type="radio" checked> {{ i.option2 }}<br><br>
-    <input type="radio" checked> {{ i.option3 }}<br><br>
-    <input type="radio" checked> {{ i.option4 }}<br><br>
-    <input type="submit" value="Submit">
-    {% endfor %}
-</form>
+<h1>Ready. Set. Go!</h1><br>
 
+<form method="post" action="/{{context.id}}/testresult/">
+    {% csrf_token %}
+    {% for i in context.questions.all %}
+    <h3>{{ i.statement }}</h3>
+    <input type="radio" name="radAns{{i}}"> {{ i.option1 }}<br><br>
+    <input type="radio" name="radAns{{i}}"> {{ i.option2 }}<br><br>
+    <input type="radio" name="radAns{{i}}"> {{ i.option3 }}<br><br>
+    <input type="radio" name="radAns{{i}}"> {{ i.option4 }}<br><br>
+    {% endfor %}
+    <input type="submit" value="Submit Test">
+</form>
 </body>
 </html>

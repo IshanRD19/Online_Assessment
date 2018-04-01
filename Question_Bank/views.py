@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from Question_Bank.models import *
 import pandas as pd
 from django.http import HttpResponse
+import datetime
 # Create your views here.
 
 
@@ -133,5 +134,12 @@ def taketest(request):
 
 def attempttest(request, questionpaper_id):
     question_paper = Question_Papers.objects.get(id=questionpaper_id)
-    all_test_questions = question_paper.questions.all()
-    return render(request, 'attempttest.html', {'context': all_test_questions})
+    #all_test_questions = question_paper.questions.all()
+    return render(request, 'attempttest.html', {'context': question_paper})
+
+def testresult(request, questionpaper_id):
+    question_paper = Question_Papers.objects.get(id=questionpaper_id)
+    totalquestions = question_paper.questions.count()
+    
+
+    return render (request, 'testresults.html', {'question_paper': question_paper, 'totalquestions': totalquestions})
