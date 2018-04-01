@@ -14,7 +14,7 @@ class Questions(models.Model):
     image2 = models.ImageField(upload_to = 'pic_folder/', default = None)
     maxMarks = models.IntegerField()
     subject = models.CharField(max_length=20, default='NA')
-    subCategory = models.CharField(max_length=20, )
+    subCategory = models.CharField(max_length=20)
     difficultyLevel = models.IntegerField(default=2)        # 1 to 5 for increasing toughness
     timeLimit = models.IntegerField()
 
