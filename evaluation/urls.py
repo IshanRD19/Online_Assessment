@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^taketest/$', taketest),
     url(r'^taketest/(?P<questionpaper_id>[0-9]+)/$', attempttest),
     url(r'^(?P<questionpaper_id>[0-9]+)/testresult/$', testresult),
+    url(r'^logs/', logs),
 ]
 
 if settings.DEBUG:

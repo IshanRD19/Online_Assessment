@@ -140,6 +140,8 @@ def attempttest(request, questionpaper_id):
 def testresult(request, questionpaper_id):
     question_paper = Question_Papers.objects.get(id=questionpaper_id)
     totalquestions = question_paper.questions.count()
-    
-
     return render (request, 'testresults.html', {'question_paper': question_paper, 'totalquestions': totalquestions})
+
+def logs(request):
+    records = Records.objects.all()
+    return render(request, 'logs.html', { 'context': records})
